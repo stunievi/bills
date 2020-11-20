@@ -13,7 +13,7 @@ import java.util.List;
  * @time: 2020/11/20 12:44
  */
 @RestController
-@RequestMapping("login")
+@RequestMapping("user")
 public class Logincontroller {
     @GetMapping("login")
     public String login(){
