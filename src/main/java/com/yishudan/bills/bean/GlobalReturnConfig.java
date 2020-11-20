@@ -11,6 +11,7 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.http.server.ServerHttpResponse;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -25,24 +26,20 @@ import java.util.ArrayList;
  * @author: Stunievi
  * @time: 2020/11/20 16:54
  */
-@Configuration
-@EnableWebMvc
-public class GlobalReturnConfig {
-    @RestControllerAdvice
-    static class ResultResponseAdvice implements ResponseBodyAdvice<Object> {
-        @Override
-        public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
-            return true;
-        }
+@ControllerAdvice(value = {"com.yishudan.bills.controller"})
+public class GlobalReturnConfig implements ResponseBodyAdvice<Object> {
+    @Override
+    public boolean supports(MethodParameter methodParameter, Class<? extends HttpMessageConverter<?>> aClass) {
+        return true;
+    }
 
-        @Override
-        public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
-            if (body instanceof Result) {
-                return body;
-            }
-//            return new Result().success(body);
-            return JSON.toJSONString(new Result().success(body));
+    @Override
+    public Object beforeBodyWrite(Object body, MethodParameter methodParameter, MediaType mediaType, Class<? extends HttpMessageConverter<?>> aClass, ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
+        if (body instanceof Result) {
+            return body;
         }
+//            return new Result().success(body);
+        return JSON.toJSONString(new Result().success(body));
     }
     /**
      * 全局异常处理

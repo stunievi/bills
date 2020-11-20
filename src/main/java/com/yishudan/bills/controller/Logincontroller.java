@@ -1,5 +1,7 @@
 package com.yishudan.bills.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,9 +14,11 @@ import java.util.List;
  * @author: Stunievi
  * @time: 2020/11/20 12:44
  */
+@Api("登录")
 @RestController
 @RequestMapping("user")
 public class Logincontroller {
+    @ApiOperation("登录")
     @GetMapping("login")
     public String login(){
         List list = new ArrayList<String>();
