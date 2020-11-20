@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @description:
  * @author: Stunievi
@@ -14,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class Logincontroller {
     @GetMapping("login")
     public String login(){
+        List list = new ArrayList<String>();
+        list.add(2);
+        list.add("22");
         return "2222";
     }
 }
