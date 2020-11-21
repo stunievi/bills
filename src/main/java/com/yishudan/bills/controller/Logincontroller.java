@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +25,11 @@ public class Logincontroller {
         List list = new ArrayList<String>();
         list.add(2);
         list.add("22");
+        list:
+        if( 1 == 1){
+            break list;
+        }
+
         return "2222";
     }
 }
